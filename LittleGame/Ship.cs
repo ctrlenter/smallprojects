@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace LittleGame
@@ -10,6 +11,8 @@ namespace LittleGame
         public int MaxFuel;
         public int Crew;
         public int MaxCrew;
+
+        public List<Item> Inventory = new List<Item>();
 
         public Ship()
         {

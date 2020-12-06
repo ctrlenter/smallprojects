@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LittleGame.States;
+using System;
 using System.Timers;
 
 namespace LittleGame
@@ -6,18 +7,31 @@ namespace LittleGame
     public class Game
     {
 
-        private const string Seperator = "<----------->";
+        public const string Seperator = "<----------->";
 
 
         public Ship ship;
+        public static Game Instance;
+
+        public GameState gameState;
+        public InventoryState inventoryState;
+
+        public State currentState;
 
         bool running = true;
 
         public Game()
         {
+            Instance = this;
+
             Log("Starting game!");
+            
             ship = new Ship();
 
+            gameState = new GameState(ship);
+            inventoryState = new InventoryState(ship);
+
+            currentState = gameState;
 
         }
 
@@ -28,28 +42,14 @@ namespace LittleGame
             while (running)
             {
                 Console.Clear();
+                
+                currentState.DrawScreen();
 
-                Log(Seperator);
-                Log("[T]asks");
-                Log("[Q]uests");
-                Log("[I]nventory");
-                Log(Seperator);
-                Log(">> ", false);
-
-                //Todo: Update
-                HandleInput();
-
+                var cmd = Console.ReadLine();
+                currentState.HandleInput(cmd);
             }
 
         }
-
-        private void HandleInput()
-        {
-            var cmd = Console.ReadLine().ToLower();
-            if (cmd == "q") running = false;
-
-        }
-
 
         public static void Log(object message, bool newLine = true)
         {
@@ -61,6 +61,11 @@ namespace LittleGame
             {
                 Console.Write(message);
             }
+        }
+
+        public void SwitchState(State state)
+        {
+            currentState = state;
         }
     }
 }

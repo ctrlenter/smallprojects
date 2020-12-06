@@ -11,9 +11,19 @@ namespace LittleGame
 
         }
 
-        public virtual void HandleInput()
+        public virtual void HandleInput(string command)
         {
 
+        }
+
+        public void WriteLine(object message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public void Write(object message)
+        {
+            Console.Write(message);
         }
     }
 }
