@@ -10,6 +10,8 @@ namespace LittleGame
         static void Main(string[] args)
         {
 
+            GameData.Init();
+
             Game game = new Game();
 
             game.Run();

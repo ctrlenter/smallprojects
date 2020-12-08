@@ -17,6 +17,7 @@ namespace LittleGame.States
         public override void DrawScreen()
         {
             WriteLine(Game.Seperator);
+            WriteLine("What would you like to do?");
             WriteLine("[I]nventory");
             WriteLine("[Q]uests");
             WriteLine("[C]rew stats");
