@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using System.Threading;
 
 namespace LittleGame.States
 {
@@ -21,6 +22,7 @@ namespace LittleGame.States
             WriteLine("[I]nventory");
             WriteLine("[Q]uests");
             WriteLine("[C]rew stats");
+            WriteLine("[S]pace collect");
             WriteLine(Game.Seperator);
             Write(">> ");
             base.DrawScreen();
@@ -39,8 +41,23 @@ namespace LittleGame.States
                     break;
                 case "c":
                     break;
+                case "s":
+                    SpaceCollect();
+                    break;
             }
+        }
 
+        private void SpaceCollect()
+        {
+            int collectCounter = 0;
+            while(collectCounter != 4)
+            {
+                int progress = 100 / collectCounter;
+                collectCounter++;
+                //TODO: generate resources
+                WriteLine("");
+                Thread.Sleep(5000);
+            }
         }
     }
 }
